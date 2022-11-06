@@ -47,6 +47,6 @@ class LinkResponse implements Responsable
         }
 
         return back()
-            ->with('short_url', $shortUrl);
+            ->with('short_url','expires_at', $shortUrl);
     }
 }

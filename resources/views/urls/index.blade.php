@@ -29,7 +29,7 @@
                     <td>{{ optional($url->user)->name }}</td>
                     <td>
                         <button class="btn btn-sm btn-success" data-clipboard-text="{{ route('url.redirect', $url->code) }}">Copy</button>
-                        <a class="btn btn-sm btn-primary {{ $url->user ? '' : 'disabled' }}" href="{{ route('url.edit', $url->id) }}" role="button">Edit</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('url.edit', $url->id) }}" role="button">Edit</a>
                         <form method="POST" action="{{ route('url.destroy', $url->id) }}">
                             @method('DELETE')
                             @csrf

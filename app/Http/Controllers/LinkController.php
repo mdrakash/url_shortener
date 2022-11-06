@@ -8,6 +8,7 @@ use App\Models\Url;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class LinkController extends Controller
@@ -19,8 +20,18 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $urls = Url::with('user')->orderBy('created_at', 'desc')->paginate(10);
-        return view('urls.index', compact('urls'));
+        //If auth user is admin show all url
+        if(Auth::user()->is_admin){
+            $urls = Url::with('user')->orderBy('created_at', 'desc')->paginate(10);
+            return view('urls.index', compact('urls'));
+        }
+        //If auth user is not admin show url which create this user
+        else{
+            $urls = Url::with('user')
+                ->where('user_id',Auth::user()->id)
+                ->orderBy('created_at', 'desc')->paginate(10);
+            return view('urls.index', compact('urls'));
+        }   
     }
 
     /**

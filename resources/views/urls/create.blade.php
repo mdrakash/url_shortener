@@ -7,6 +7,9 @@
             <div class="alert alert-success" role="alert">
                 Your shortened url is: <a class="font-weight-bold" href="{{ session('short_url') }}" title="your shortened url">{{ session('short_url') }}</a> (<a class="copy-clipboard" href="javascript:void(0);" data-clipboard-text="{{ session('short_url') }}">Copy link to clipboard</a>)
             </div>
+            <div class="alert alert-info" role="alert">
+                <p>Your Link Expired At {{session ('expires_at')}}</p>
+            </div>
         @endif
         <form method="POST" action="{{ route('url.store') }}">
             @csrf
