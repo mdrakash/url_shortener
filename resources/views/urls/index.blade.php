@@ -13,7 +13,7 @@
         </div>
         <table class="table">
             <tr>
-                <th>Url</th>
+                <th>Orginial Url</th>
                 <th>Short Url</th>
                 <th>Counter</th>
                 <th>Status</th>
@@ -22,8 +22,8 @@
             </tr>
             @foreach ($urls as $url)
                 <tr>
-                    <td>{{ $url->url }}</td>
-                    <td><a href="{{ route('url.redirect', $url->code) }}">{{ $url->code }}</a></td>
+                    <td class="w-50">{{ $url->url }}</td>
+                    <td><a href="{{ route('url.redirect', $url->code) }}"target="_blank">{{ $url->code }}</a></td>
                     <td>{{ $url->counter }}</td>
                     <td>{{\Carbon\Carbon::parse($url->expires_at)->isFuture() ? 'Online' : 'Link Expired'}}</td>
                     <td>{{ optional($url->user)->name }}</td>
@@ -39,7 +39,7 @@
                 </tr>
             @endforeach
         </table>
-
+        {{ $urls->links() }}
     </div>
 @endsection
 
@@ -53,6 +53,10 @@
         }
         .pagination {
             justify-content: flex-end;
+        }
+
+        .w-50{
+            width: 50%;
         }
     </style>
 @endpush

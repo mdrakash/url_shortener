@@ -33,7 +33,7 @@ class LinkResponse implements Responsable
     public function toResponse($request)
     {
         $shortUrl = route('url.redirect', ['code' => $this->url->code]);
-
+        $expires_at= $this->url->expires_at;
         if ($request->wantsJson()) {
             return response([
                 'id'          => $this->url->id,
@@ -41,12 +41,13 @@ class LinkResponse implements Responsable
                 'url'         => $this->url->url,
                 'short_url'   => $shortUrl,
                 'counter'     => $this->url->counter,
-                'expires_at'  => $this->url->expires_at,
+                'expires_at'  => $expires_at,
                 'user_id'     => optional($this->url->user)->id,
             ], 201);
         }
 
         return back()
-            ->with('short_url','expires_at', $shortUrl);
+            ->with('short_url', $shortUrl)
+            ->with('expires_at',$expires_at);
     }
 }
