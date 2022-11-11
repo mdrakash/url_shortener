@@ -14,6 +14,14 @@ php artisan serve
 php artisan make:admin
 ```
 
+## Web Use
+1. If you are free user you can random generate short code for url and expire     will be 1 day
+2. If you login as a user you can extra feature for url shortener like custom short code and set expire date and you can multiple url short.
+    to see your all link shortener go 
+    ```
+    http://example.com/list
+    ```
+3. You can also edit and delete Short Link and also show link click count.
 ## API Use
 
 ```
